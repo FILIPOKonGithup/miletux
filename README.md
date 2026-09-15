@@ -21,8 +21,7 @@ Tux looks and sees Nolok's fortress in the distance. Determined to save his belo
 Important documentation for MileTux is located in the wiki (https://miletux.miraheze.org/wiki/Main_Page) for Players, Developers and Modders! You can read those if you want.
 
 ## Running the game
-Currently, there is no compiled release for this game. You can still run the game though by simply loading the project.godot file in Godot 4.7.2 and playing the
-game that way.
+Currently, there is no complete release of this game. However, if you have a GitHub account, you can go to the Actions tab of the repository to get a "nightly" build of the game for your platform (Windows, Mac or Linux). Please be aware that those builds may be unstable, although if you want to report a bug, you should make sure it's reproducible on the latest nightly build.
 
 ## Playing the game
 Currently, only keyboards are supported. You can't change the controls via the Options menu yet, but you will be able to later. Basically, the only keys you will need to use in-game are to do the following actions: jump, duck, right, left and action. There isn't much to tell about the first few, but the "action" key allows you to pick up objects and use any powerup you got. For instance, with the fire flower, you can shoot fireballs, or with the ice flower fire ice pellets.
