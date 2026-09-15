@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dvlpk0qaxboou"]
+
+[ext_resource type="Texture2D" uid="uid://bxbucqh8krkd7" path="res://data/images/particles/snow0.png" id="1_mu2kt"]
+[ext_resource type="Texture2D" uid="uid://comrhp78ky7ir" path="res://data/images/particles/snow1.png" id="2_shiow"]
+[ext_resource type="Texture2D" uid="uid://ddgu4vbdcmobu" path="res://data/images/particles/snow2.png" id="3_y8p3b"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mu2kt"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -38, 0)
+emission_shape_scale = Vector3(1280, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 32, 0)
+
+[node name="Snow" type="Node2D" unique_id=2033506817]
+z_index = -200
+
+[node name="Snow1" type="GPUParticles2D" parent="." unique_id=1057522501]
+amount = 64
+texture = ExtResource("1_mu2kt")
+lifetime = 8.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_mu2kt")
+
+[node name="Snow2" type="GPUParticles2D" parent="." unique_id=1469457098]
+amount = 64
+texture = ExtResource("2_shiow")
+lifetime = 8.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_mu2kt")
+
+[node name="Snow3" type="GPUParticles2D" parent="." unique_id=1981184129]
+amount = 64
+texture = ExtResource("3_y8p3b")
+lifetime = 8.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_mu2kt")

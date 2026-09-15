@@ -41,4 +41,4 @@ level_scene = ExtResource("6_0os26")
 level_name = "Test Level"
 
 [node name="Rock" parent="." unique_id=1794535317 instance=ExtResource("7_k0w0s")]
-position = Vector2(416, 192)
+position = Vector2(480, 192)

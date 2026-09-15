@@ -12,6 +12,8 @@ class_name Level
 @export var manual_camera = false
 @export var autoscroll_speed = 80
 
+@export var snow = false
+
 const hud = preload("res://src/hud/hud.tscn")
 
 func _ready() -> void:
@@ -33,6 +35,10 @@ func _ready() -> void:
 	else:
 		$Camera.global_position = $Tux.global_position
 	Signals.connect("level_finished", _on_level_finished)
+	if snow:
+		if not get_node_or_null("Snow") == null:
+			$Snow.visible = true
+			$Snow.global_position.x = $Camera.global_position.x
 
 func find_spawnpoint():
 	if not Global.checkpoint_reached or Global.coins <= 25:
@@ -59,6 +65,11 @@ func _physics_process(delta: float) -> void:
 				$Camera.global_position.x = move_toward($Camera.global_position.x, target_x, 360 * delta)
 		else:
 			$Camera.global_position.x += autoscroll_speed * delta
+	
+	if snow:
+		if not get_node_or_null("Snow") == null:
+			$Snow.visible = true
+			$Snow.global_position.x = $Camera.global_position.x
 
 func _on_level_finished():
 	Global.paused = false
