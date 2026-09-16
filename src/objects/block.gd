@@ -10,7 +10,8 @@ enum ItemDirections
 @export_category("Generic")
 @export var bonus = false
 @export var brick = false
-@export_enum("Coin", "Fire Flower", "Tux Doll", "Star") var content = 0
+@export_enum("Coin", "Fire Flower", "Tux Doll", "Star", "Nothing") var content = 0
+@export var hidden_block = false
 
 var empty = false
 var bump = false
@@ -30,6 +31,9 @@ func _ready() -> void:
 	if not brick:
 		$Image.play("normal")
 	
+	if hidden_block:
+		$Image.visible = false
+	
 	$DetectorLeft.connect("body_entered", _on_dl_body_entered)
 	$DetectorRight.connect("body_entered", _on_dr_body_entered)
 	$DetectorDown.connect("body_entered", _on_dd_body_entered)
@@ -38,6 +42,9 @@ func _ready() -> void:
 func _on_dd_body_entered(body):
 	if Global.paused:
 		return
+	
+	if hidden_block:
+		$Image.visible = true
 	
 	if body.is_in_group("Player") and not empty and body.velocity.y >= 0 and not body.dead:
 		turn_empty("up_down")
@@ -64,6 +71,9 @@ func _on_dl_body_entered(body):
 	if Global.paused:
 		return
 	
+	if hidden_block:
+		$Image.visible = true
+	
 	if body.is_in_group("Badguy") and not empty:
 		if body.kill_other_enemies and not body.current_iceblock_state == body.IceblockStates.HELD:
 			turn_empty("up_down")
@@ -75,6 +85,9 @@ func _on_dl_body_entered(body):
 func _on_dr_body_entered(body):
 	if Global.paused:
 		return
+	
+	if hidden_block:
+		$Image.visible = true
 	
 	if body.is_in_group("Badguy") and not empty:
 		if body.kill_other_enemies and not body.current_iceblock_state == body.IceblockStates.HELD:
@@ -133,6 +146,8 @@ func spawn_item(direction:ItemDirections):
 				star.call_deferred("spawn_from_block", -1)
 			else:
 				star.call_deferred("spawn_from_block", 1)
+		4: # Nothing
+			$BrickSound.play()
 
 func _on_bump_finished(anim_name:StringName):
 	if Global.paused:

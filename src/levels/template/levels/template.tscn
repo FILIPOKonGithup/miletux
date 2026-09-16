@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://33idnohaw00u" path="res://src/creatures/player/tux.tscn" id="4_qxjrv"]
 [ext_resource type="PackedScene" uid="uid://bhjgd4oianlfl" path="res://src/global/camera.tscn" id="5_2k15b"]
 [ext_resource type="PackedScene" uid="uid://b340k12byw0ja" path="res://src/objects/tux_spawnpoint.tscn" id="6_idvpn"]
+[ext_resource type="PackedScene" uid="uid://dvlpk0qaxboou" path="res://src/particles/level/snow.tscn" id="7_vdl4a"]
 
 [node name="Template" type="Node2D" unique_id=131155539]
 script = ExtResource("1_bdoqm")
@@ -40,3 +41,6 @@ position = Vector2(79, 391)
 
 [node name="TuxSpawnpoint" parent="." unique_id=1156520866 instance=ExtResource("6_idvpn")]
 position = Vector2(96, 352)
+
+[node name="Snow" parent="." unique_id=2033506817 instance=ExtResource("7_vdl4a")]
+visible = false

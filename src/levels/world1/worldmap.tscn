@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ddeg27kq40scv" path="res://src/levels/world1/levels/05-the_somewhat_smaller_bath.tscn" id="10_bjpkc"]
 [ext_resource type="PackedScene" uid="uid://ca1rtl8a01b16" path="res://src/levels/world1/levels/06-the_frosted_fields.tscn" id="10_umfba"]
 [ext_resource type="PackedScene" uid="uid://capbdrxofkra5" path="res://src/levels/world1/levels/07-more_snowballs.tscn" id="11_0cvpb"]
+[ext_resource type="PackedScene" uid="uid://x7vd16cm3muj" path="res://src/levels/world1/levels/08-stone_cold.tscn" id="12_4h7ak"]
 
 [node name="Worldmap" type="Node2D" unique_id=1039099861]
 process_mode = 3
@@ -72,6 +73,12 @@ level_section = 3
 position = Vector2(512, 1376)
 level_scene = ExtResource("11_0cvpb")
 level_name = "Oh No! More Snowballs!"
+level_section = 3
+
+[node name="Level8" parent="." unique_id=656178635 instance=ExtResource("5_bjpkc")]
+position = Vector2(704, 1472)
+level_scene = ExtResource("12_4h7ak")
+level_name = "Stone Cold"
 level_section = 3
 
 [node name="Level5" parent="." unique_id=1903374943 instance=ExtResource("5_bjpkc")]
