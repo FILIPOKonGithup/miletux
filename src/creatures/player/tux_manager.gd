@@ -8,4 +8,5 @@ enum TuxStates
 }
 
 var current_state = TuxStates.SMALL
+
 var direction = 1

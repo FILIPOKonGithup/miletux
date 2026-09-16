@@ -2,7 +2,7 @@ extends Area2D
 
 @export_enum("End Sequence", "Stop Tux") var type = 0
 @export_file("*.ogg") var leveldone_song = "res://data/music/leveldone.ogg"
-@export var leveldone_length = 7.68
+@export var leveldone_length = 7.68 # unused variable that probably should be used?
 
 func _ready() -> void:
 	connect("body_entered", _on_something_detected)
@@ -20,6 +20,7 @@ func _on_something_detected(body):
 					body.skid = false
 					body.can_take_damage = false
 					body.get_star_lite()
+					body.stop_star_music()
 					body.change_image_direction(1)
 					Music.stream = load(leveldone_song)
 					Music.play()

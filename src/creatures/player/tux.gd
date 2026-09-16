@@ -441,8 +441,13 @@ func get_star_lite():
 	Global.tux_star_invincible = true
 	$Stars.emitting = true
 
+# Stops star music, used by the goal.
+func stop_star_music():
+	Music.stream = load(Global.level_song)
+	Music.play()
+
 func remove_star():
-	if Global.paused:
+	if Global.paused or Global.tux_reached_end:
 		return
 	
 	Global.tux_star_invincible = false

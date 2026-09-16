@@ -25,7 +25,7 @@ func set_direction_speed(who:CharacterBody2D):
 			speed = speed + who.velocity.x / 2
 	else:
 		if who.velocity.x <= -1:
-			speed = speed + who.velocity.x / 2
+			speed = speed - who.velocity.x / 2
 	
 	if who.velocity.y <= 0:
 		speed = speed - who.velocity.y

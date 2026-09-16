@@ -84,7 +84,8 @@ func save_data():
 		"debug": debug,
 		"music_playing": music_playing,
 		"sounds": sounds,
-		"save_version": save_version
+		"save_version": save_version,
+		"tux_state": tux_state
 	}
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
@@ -109,19 +110,33 @@ func load_data():
 			var data = json.get_data()
 			if data.has("completed_levels"):
 				completed_levels = data["completed_levels"]
+			if data.has("coins"):
 				coins = data["coins"]
+			if data.has("current_worldmap"):
 				current_worldmap = data["current_worldmap"]
+			if data.has("completed_worldmaps"):
 				completed_worldmaps = data["completed_worldmaps"]
+			if data.has("tux_wm_x"):
 				tux_wm_x = data["tux_wm_x"]
+			if data.has("tux_wm_y"):
 				tux_wm_y = data["tux_wm_y"]
+			if data.has("particles"):
 				particles = data["particles"]
+			if data.has("level_hud"):
 				level_hud = data["level_hud"]
+			if data.has("debug"):
 				debug = data["debug"]
+			if data.has("music_playing"):
 				music_playing = data["music_playing"]
+			if data.has("sounds"):
 				sounds = data["sounds"]
+			if data.has("save_version"):
 				save_version = data["save_version"]
-				
-				print("Game loaded!")
+			if data.has("tux_state"):
+				tux_state = data["tux_state"]
+				TuxManager.current_state = tux_state
+			
+			print("Game loaded!")
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
