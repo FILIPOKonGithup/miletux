@@ -1,4 +1,7 @@
 extends RichTextLabel
+class_name TextScroll
+
+# It's a class because I'm lazy.
 
 @export var text_speed = 30
 @export var add_remove_speed = 5

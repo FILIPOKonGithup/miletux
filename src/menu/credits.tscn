@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://iruxavsg7ibp" path="res://data/images/menu/oiltux.jpg" id="1_3joxc"]
 [ext_resource type="Script" uid="uid://5qcx0f4kl34s" path="res://src/menu/cutscene.gd" id="1_6yh48"]
 [ext_resource type="FontFile" uid="uid://boltmv8cfep8v" path="res://data/fonts/SuperTux-Medium.ttf" id="3_kh5sd"]
+[ext_resource type="Script" uid="uid://c57fgxiyu3wut" path="res://src/menu/text_scroll.gd" id="4_kh5sd"]
 
 [node name="Credits" type="Node2D" unique_id=551078819]
 script = ExtResource("1_6yh48")
@@ -11,7 +12,7 @@ script = ExtResource("1_6yh48")
 texture = ExtResource("1_3joxc")
 centered = false
 
-[node name="Text" type="RichTextLabel" parent="." unique_id=1151496341]
+[node name="Text" type="RichTextLabel" parent="." unique_id=731141755]
 offset_top = 480.0
 offset_right = 640.0
 offset_bottom = 960.0
@@ -41,3 +42,5 @@ You made it to the end of the credits! Congratulations!
 
 Press SPACE to exit to the Main Menu."
 horizontal_alignment = 1
+script = ExtResource("4_kh5sd")
+metadata/_custom_type_script = "uid://c57fgxiyu3wut"
