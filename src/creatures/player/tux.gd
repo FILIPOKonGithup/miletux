@@ -47,6 +47,7 @@ var auto_walk_speed = 0 # Don't change this! It's automatically set by the thing
 
 # Other stuff
 var was_on_floor = false
+var previous_position = Vector2.ZERO
 
 # Collision Shape Stuff
 @export_category("Small Tux Collision Shape")
@@ -70,10 +71,11 @@ func _ready() -> void:
 	add_to_group("Player")
 	$Stomp.add_to_group("Stomp")
 	$StarTimer.connect("timeout", _on_star_timer_timeout)
-	get_collision_end()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	previous_position = global_position
+	
 	# If Tux is not in a cutscene and the game is not paused, stop Tux from going out of bounds through the left of the level.
 	if not in_cutscene or not Global.paused:
 		if global_position.x < 0:
@@ -499,6 +501,6 @@ func play_animation(animation:String):
 	$BigImage.play(animation)
 	$FireImage.play(animation)
 
-# Unused, but I might use it in the future. Probably isn't even correct.
-func get_collision_end():
-	return $Collision.shape.size.y
+# Unused, but I might use it in the future. Hopefully it's correct now.
+func get_collision_bottom():
+	return global_position.y + $Collision.position.y + ($Collision.shape.size.y / 2)

@@ -13,6 +13,8 @@ enum ItemDirections
 @export_enum("Coin", "Fire Flower", "Tux Doll", "Star", "Nothing") var content = 0
 @export var hidden_block = false
 
+var hidden_block_activated = false
+
 var empty = false
 var bump = false
 
@@ -33,6 +35,8 @@ func _ready() -> void:
 	
 	if hidden_block:
 		$Image.visible = false
+		$Collision.one_way_collision = true
+		$Collision.one_way_collision_direction = Vector2.UP
 	
 	$DetectorLeft.connect("body_entered", _on_dl_body_entered)
 	$DetectorRight.connect("body_entered", _on_dr_body_entered)
@@ -43,11 +47,17 @@ func _on_dd_body_entered(body):
 	if Global.paused:
 		return
 	
-	if hidden_block:
-		$Image.visible = true
+	if body.previous_position.y <= global_position.y:
+		return
 	
 	if body.is_in_group("Player") and not empty and body.velocity.y >= 0 and not body.dead:
 		turn_empty("up_down")
+		
+		if hidden_block:
+			$Image.visible = true
+			$Collision.set_deferred("one_way_collision", false)
+			hidden_block_activated = true
+		
 		if body.global_position.x < global_position.x + 16:
 			spawn_item(ItemDirections.RIGHT)
 		elif body.global_position.x > global_position.x + 16:
@@ -57,7 +67,6 @@ func _on_dd_body_entered(body):
 	elif body.is_in_group("Player") and empty and body.velocity.y >= 0 and not body.dead:
 		$BrickSound.play()
 	
-	# TODO: Add to brick
 	if body.is_in_group("Badguy") and not empty and body.kill_other_enemies and not body.current_iceblock_state == body.IceblockStates.HELD: # nooooooo it's duplicated code!!!! and long if statement!!!!
 		turn_empty("up_down")
 		if body.global_position.x < global_position.x + 16:
@@ -71,8 +80,8 @@ func _on_dl_body_entered(body):
 	if Global.paused:
 		return
 	
-	if hidden_block:
-		$Image.visible = true
+	if hidden_block and not hidden_block_activated:
+		return
 	
 	if body.is_in_group("Badguy") and not empty:
 		if body.kill_other_enemies and not body.current_iceblock_state == body.IceblockStates.HELD:
@@ -86,8 +95,8 @@ func _on_dr_body_entered(body):
 	if Global.paused:
 		return
 	
-	if hidden_block:
-		$Image.visible = true
+	if hidden_block and not hidden_block_activated:
+		return
 	
 	if body.is_in_group("Badguy") and not empty:
 		if body.kill_other_enemies and not body.current_iceblock_state == body.IceblockStates.HELD:
@@ -189,7 +198,7 @@ func spawn_brick_particles():
 	brick_particles.global_position = self.global_position
 
 func detect_enemies():
-	if Global.paused:
+	if Global.paused or hidden_block:
 		return
 	
 	for body in $DetectorUp.get_overlapping_bodies():
