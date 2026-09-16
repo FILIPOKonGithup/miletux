@@ -246,12 +246,3 @@ type = 1
 
 [node name="BonusBlock14" parent="." unique_id=906906308 instance=ExtResource("8_ixmni")]
 position = Vector2(576, 288)
-
-[node name="BonusBlock15" parent="." unique_id=2082771802 instance=ExtResource("8_ixmni")]
-position = Vector2(416, 288)
-
-[node name="BonusBlock16" parent="." unique_id=288287571 instance=ExtResource("8_ixmni")]
-position = Vector2(448, 288)
-
-[node name="BonusBlock17" parent="." unique_id=439393580 instance=ExtResource("8_ixmni")]
-position = Vector2(384, 288)
