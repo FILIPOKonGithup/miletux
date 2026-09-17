@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cx3to77rwcpp3" path="res://src/creatures/badguys/explosion.gd" id="2_mr817"]
 [ext_resource type="Texture2D" uid="uid://nnai26b1lov7" path="res://data/images/particles/explosion-1.png" id="3_eiwvd"]
 [ext_resource type="Texture2D" uid="uid://dcrmit4o3xemy" path="res://data/images/particles/explosion-2.png" id="4_mr817"]
-[ext_resource type="Material" uid="uid://s4u0kqwu3gk" path="res://data/particle_process_materials/smoke.tres" id="6_0y2vy"]
 [ext_resource type="AudioStream" uid="uid://cd11xtohlqjt0" path="res://data/sounds/explode.ogg" id="6_ec5qn"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_dfipr"]
@@ -18,6 +17,9 @@ frame_1/duration = 1.0
 frame_2/texture = ExtResource("4_mr817")
 frame_2/duration = 1.0
 
+[sub_resource type="Gradient" id="Gradient_ec5qn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Explosion" type="AnimatedSprite2D" unique_id=886021140]
 z_index = 49
 sprite_frames = ExtResource("1_581wn")
@@ -25,14 +27,23 @@ frame_progress = 0.99758214
 offset = Vector2(16, 0)
 script = ExtResource("2_mr817")
 
-[node name="Particles" type="GPUParticles2D" parent="." unique_id=239863382]
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1652831094]
 emitting = false
 amount = 32
 texture = SubResource("AnimatedTexture_dfipr")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-process_material = ExtResource("6_0y2vy")
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 34.4
+direction = Vector2(1, -1)
+spread = 100.0
+gravity = Vector2(0, 1000)
+initial_velocity_min = -300.0
+initial_velocity_max = 682.69
+color_ramp = SubResource("Gradient_ec5qn")
 
 [node name="Detector" type="Area2D" parent="." unique_id=673571817]
 collision_layer = 32
