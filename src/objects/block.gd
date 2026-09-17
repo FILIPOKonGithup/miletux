@@ -34,7 +34,7 @@ enum ItemDirections
 
 var hidden_block_activated = false
 
-var empty = false
+@export var empty = false
 var bump = false
 
 var tux_on_left = false
@@ -56,6 +56,9 @@ func _ready() -> void:
 		$Image.visible = false
 		$Collision.one_way_collision = true
 		$Collision.one_way_collision_direction = Vector2.UP
+	
+	if empty:
+		$Image.play("empty")
 	
 	$DetectorLeft.connect("body_entered", _on_dl_body_entered)
 	$DetectorRight.connect("body_entered", _on_dr_body_entered)

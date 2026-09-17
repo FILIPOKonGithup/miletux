@@ -58,6 +58,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_wall() and not was_on_wall:
 		flip_direction()
 	
+	was_on_wall = is_on_wall()
+	
 	move_and_slide()
 
 func flip_direction():
