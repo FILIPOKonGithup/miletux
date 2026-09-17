@@ -12,6 +12,7 @@ config_version=5
 
 config/name="MileTux"
 run/main_scene="uid://bsvoc8334cq1d"
+config/use_custom_user_dir=true
 config/auto_accept_quit=false
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
