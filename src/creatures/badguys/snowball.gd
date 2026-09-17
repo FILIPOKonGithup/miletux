@@ -41,15 +41,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 	
-	if is_on_wall() and not was_on_wall:
-		flip_direction()
+	if is_on_wall():
+		if velocity.x * get_wall_normal().x < 0:
+			flip_direction()
 	
 	if direction == 1:
 		$Image.flip_h = true
 	else:
 		$Image.flip_h = false
-	
-	was_on_wall = is_on_wall()
 	
 	move_and_slide()
 
@@ -78,8 +77,12 @@ func _on_tux_detector_body_entered(body):
 	if body.is_in_group("Player"):
 		held_badguy_check(true, body)
 	if body.is_in_group("Badguy"):
-		if not body == self:
-			if body.kill_other_enemies:
-				death_fall(false)
-			if body.kill_self_on_touching_enemy:
-				body.death_fall(true)
+		if body == self:
+			return
+			
+		if body.kill_other_enemies:
+			death_fall(false)
+		if body.kill_self_on_touching_enemy:
+			body.death_fall(true)
+		if not body.kill_other_enemies or not body.kill_self_on_touching_enemy:
+			flip_direction()

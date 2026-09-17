@@ -59,15 +59,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = 0
 	
-	if is_on_wall() and not was_on_wall:
-		flip_direction()
+	if is_on_wall():
+		if velocity.x * get_wall_normal().x < 0:
+			flip_direction()
 	
 	if direction == 1:
 		$Image.flip_h = true
 	else:
 		$Image.flip_h = false
 	
-	was_on_wall = is_on_wall()
 	gd_was_colliding = $GroundDetector.is_colliding()
 	
 	move_and_slide()

@@ -41,15 +41,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and current_state == BadguyStates.DEAD:
 		velocity += get_gravity() * delta
 	
-	if is_on_wall() and not was_on_wall:
-		flip_direction()
-	
 	if direction == 1:
 		$Image.flip_h = true
 	else:
 		$Image.flip_h = false
-	
-	was_on_wall = is_on_wall()
 	
 	move_and_slide()
 

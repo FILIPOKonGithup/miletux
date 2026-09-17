@@ -86,9 +86,6 @@ func _physics_process(delta: float) -> void:
 		set_collision_mask_value(3, true)
 		set_collision_layer_value(5, false)
 	
-	if is_on_wall() and not was_on_wall:
-		flip_direction()
-	
 	if current_state == BadguyStates.ALIVE:
 		if direction == -1:
 			$GroundDetector.position.x = ground_detector_x_left
@@ -111,13 +108,17 @@ func _physics_process(delta: float) -> void:
 		else:
 			global_position.y = held_by.global_position.y - (held_by.get_node("Collision").shape.size.y / 4)
 	
-	if current_iceblock_state == IceblockStates.MOVINGFLAT and is_on_wall() and not was_on_wall:
-		$Ricochet.play()
+	if current_iceblock_state == IceblockStates.MOVINGFLAT and is_on_wall():
+		if velocity.x * get_wall_normal().x < 0:
+			$Ricochet.play()
 	
 	animate()
 	move()
 	
-	was_on_wall = is_on_wall()
+	if is_on_wall() and not current_iceblock_state == IceblockStates.FLAT:
+		if velocity.x * get_wall_normal().x < 0:
+			flip_direction()
+	
 	previous_velocity_x = velocity.x
 	gd_was_colliding = $GroundDetector.is_colliding()
 	

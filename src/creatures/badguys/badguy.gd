@@ -42,8 +42,6 @@ var current_state = BadguyStates.ALIVE
 var kill_other_enemies = false # I'm an idiot
 var kill_self_on_touching_enemy = false
 
-var was_on_wall = false
-
 @export var direction = -1
 
 var flammable = true
